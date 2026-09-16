@@ -27,6 +27,11 @@ public class InputController : MonoBehaviour
         return player.GetButtonDown(actionId);
     }
 
+    public bool GetButton(int actionId)
+    {
+        return player.GetButton(actionId);
+    }
+
     public static class InputAction
     {
         public const int MoveY = 1;
@@ -34,5 +39,8 @@ public class InputController : MonoBehaviour
         public const int Jump = 3;
         public const int MouseX = 4;
         public const int MouseY = 5;
+        public const int Sprint = 6;
+        public const int RightHook = 7;
+        public const int LeftHook = 8;
     }
 }

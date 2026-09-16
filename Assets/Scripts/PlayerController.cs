@@ -20,17 +20,18 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         IsOnFloor();
+        MovePlayer();
         if(InputController.Instance.GetButtonDown(InputController.InputAction.Jump) && onFloor)
         {
             Jump();
         }
     }
-
+/*
     private void FixedUpdate()
     {
         MovePlayer();
     }
-
+*/
     private void MovePlayer()
     {
         float moveX = InputController.Instance.GetAxis(InputController.InputAction.MoveX);
