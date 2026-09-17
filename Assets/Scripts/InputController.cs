@@ -42,5 +42,6 @@ public class InputController : MonoBehaviour
         public const int Sprint = 6;
         public const int RightHook = 7;
         public const int LeftHook = 8;
+        public const int Fire = 9;
     }
 }
