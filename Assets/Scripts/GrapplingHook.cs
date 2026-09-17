@@ -4,7 +4,7 @@ public class GrapplingHook : MonoBehaviour
 {
     private LineRenderer lineRenderer;
     [SerializeField] private Vector3 grapplePoint;
-    [SerializeField] private float maxDistance = 100f; //erase if not used
+    [SerializeField] private float maxDistance = 1000f; //erase if not used
     [SerializeField] private int inputAction;
     [SerializeField] private bool isHooked;
     private SpringJoint joint;
@@ -54,7 +54,7 @@ public class GrapplingHook : MonoBehaviour
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
 
-            joint.maxDistance = distanceFromPoint * 0.8f;
+            joint.maxDistance = distanceFromPoint * 0.3f;
             joint.minDistance = distanceFromPoint * 0.25f;
 
             joint.spring = 4.5f;
@@ -63,6 +63,7 @@ public class GrapplingHook : MonoBehaviour
 
             lineRenderer.positionCount = 2;
             isHooked = true;
+            player.GetComponent<PlayerController>().isSwinging = true;
         }
     }
 
@@ -71,6 +72,7 @@ public class GrapplingHook : MonoBehaviour
         lineRenderer.positionCount = 0;
         Destroy(joint);
         isHooked = false;
+        player.GetComponent<PlayerController>().isSwinging = false;
     }
 
     private void DrawRope()

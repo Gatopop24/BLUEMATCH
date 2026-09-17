@@ -8,7 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform floorCheck;
     [SerializeField] private float floorDistance = 0.2f;
     [SerializeField] private LayerMask floorMask;
+    [SerializeField] private float swingControlForce = 20f;
+    [SerializeField] private float airControlForce = 15f;
     private Rigidbody playerRB;
+    public bool isSwinging;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     private void Start()
@@ -20,26 +24,35 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         IsOnFloor();
-        MovePlayer();
         if(InputController.Instance.GetButtonDown(InputController.InputAction.Jump) && onFloor)
         {
             Jump();
         }
     }
-/*
+
     private void FixedUpdate()
     {
         MovePlayer();
     }
-*/
     private void MovePlayer()
     {
         float moveX = InputController.Instance.GetAxis(InputController.InputAction.MoveX);
         float moveZ = InputController.Instance.GetAxis(InputController.InputAction.MoveY);
         Vector3 movement = (transform.right * moveX) + (transform.forward * moveZ);
-        Vector3 velocity = movement * speed;
-        velocity.y = playerRB.linearVelocity.y;
-        playerRB.linearVelocity = velocity;
+        if(onFloor)
+        {
+            Vector3 velocity = movement * speed;
+            velocity.y = playerRB.linearVelocity.y;
+            playerRB.linearVelocity = velocity;
+        }
+        else if (isSwinging)
+        {
+            playerRB.AddForce(movement * swingControlForce, ForceMode.Acceleration);
+        }
+        else
+        {
+            playerRB.AddForce(movement * airControlForce, ForceMode.Acceleration);//this is going to work when the player let go the hook
+        }
     }
 
     private void Jump()
