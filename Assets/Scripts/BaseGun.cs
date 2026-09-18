@@ -74,7 +74,10 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void SpawnBulletTrail(Vector3 hitPoint)
     {
-        GameObject trailObj = Instantiate(bulletTrail, muzzle.position, Quaternion.identity); // modify for object pooling
+        GameObject trailObj = ObjectPooler.SharedInstance.GetPooledObject();
+        trailObj.transform.position = muzzle.position;
+        trailObj.transform.rotation = Quaternion.identity;
+        trailObj.SetActive(true); 
         LineRenderer line = trailObj.GetComponent<LineRenderer>();
         StartCoroutine(AnimateTrail(line, muzzle.position, hitPoint));
     }
@@ -97,6 +100,7 @@ public class BaseGun : MonoBehaviour
         }
 
         line.SetPosition(1, end);
-        Destroy(line.gameObject, 0.05f); //modify for object pooling
+        yield return new WaitForSeconds(0.05f);
+        line.gameObject.SetActive(false); //modify for object pooling
     }
 }

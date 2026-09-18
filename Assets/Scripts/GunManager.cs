@@ -9,14 +9,14 @@ public class GunManager : MonoBehaviour
     private List<BaseGun> equippedWeapons = new List<BaseGun>();
     private int currentGunIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         SpawnAllGuns();
         SelectGun(currentGunIndex);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float scroll = InputController.Instance.GetAxis(InputController.InputAction.ChangeGun);
         if(scroll > 0f)

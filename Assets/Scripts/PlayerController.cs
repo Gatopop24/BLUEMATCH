@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask floorMask;
     [SerializeField] private float swingControlForce = 20f;
     [SerializeField] private float airControlForce = 15f;
+    private Health playerHealth;
+    public TextMeshProUGUI playerHealthText;
     private Rigidbody playerRB;
     public bool isSwinging;
     
@@ -18,11 +21,13 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+        playerHealth = GetComponent<Health>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        playerHealthText.text = "Health : " + playerHealth.currentHealth;
         IsOnFloor();
         if(InputController.Instance.GetButtonDown(InputController.InputAction.Jump) && onFloor)
         {

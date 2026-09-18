@@ -4,7 +4,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
+    [SerializeField] public int currentHealth;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -23,5 +24,12 @@ public class Health : MonoBehaviour
     private void Die()
     {
         gameObject.SetActive(false);
+        isDead = true;
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        isDead = false;
     }
 }
