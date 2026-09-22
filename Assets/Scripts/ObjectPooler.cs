@@ -3,15 +3,9 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler SharedInstance;
     public List<GameObject> pooledObjects;
     public List<GameObject> objectsToPool;
     public int amountToPool;
-
-    void Awake()
-    {
-        SharedInstance = this;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +22,6 @@ public class ObjectPooler : MonoBehaviour
                 obj.transform.SetParent(this.transform); // set as children of Spawn Manager
             }
         }
-        //ShuffleList(); //this will shuffle the list so the bullets will be ramdomized if needed
     }
 
     public GameObject GetPooledObject()
@@ -45,16 +38,4 @@ public class ObjectPooler : MonoBehaviour
         // otherwise, return null   
         return null;
     }
-/*
-    public void ShuffleList()
-    {
-        for (int i = 0; i < pooledObjects.Count; i++)
-        {
-            GameObject copy = pooledObjects[i];
-            int randomIndex = Random.Range(i, pooledObjects.Count);
-            pooledObjects[i] = pooledObjects[randomIndex];
-            pooledObjects[randomIndex] = copy;
-        }
-    }
-*/
 }

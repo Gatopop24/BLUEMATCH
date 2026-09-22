@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseGun : MonoBehaviour
 {
+    [SerializeField] protected ObjectPooler pooler;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected float fireCooldown;
     [SerializeField] protected float currentCooldown;
@@ -74,7 +75,7 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void SpawnBulletTrail(Vector3 hitPoint)
     {
-        GameObject trailObj = ObjectPooler.SharedInstance.GetPooledObject();
+        GameObject trailObj = pooler.GetPooledObject();
         trailObj.transform.position = muzzle.position;
         trailObj.transform.rotation = Quaternion.identity;
         trailObj.SetActive(true); 

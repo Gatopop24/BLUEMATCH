@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private ObjectPooler pooler;
     public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
     public float spawnInterval = 3f;
@@ -13,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        pooler = GetComponent<ObjectPooler>();
         StartSpawning();
     }
 
@@ -47,9 +49,13 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        GameObject prefabToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        //GameObject prefabToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        GameObject newEnemy = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+        //GameObject newEnemy = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+        GameObject newEnemy = pooler.GetPooledObject();
+        newEnemy.transform.position = spawnPoint.position;
+        newEnemy.transform.rotation = spawnPoint.rotation;
+        newEnemy.SetActive(true);
         aliveEnemies.Add(newEnemy);
     }
 
