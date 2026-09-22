@@ -142,8 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  damageCooldown: 0
+  damageCooldown: 2
   currentCooldown: 0
+  health: {fileID: 0}
+  canAttack: 1
 --- !u!114 &2615207744998686198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6853712761928120278}
-  player: {fileID: 0}
+  player: {fileID: 890534339825639137, guid: 1d21ab8551efb6048bb7c4a4f3e3c137, type: 3}
 --- !u!195 &6853712761928120278
 NavMeshAgent:
   m_ObjectHideFlags: 0
