@@ -6,11 +6,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int damage = 10;
     [SerializeField] protected float damageCooldown = 2; 
     [SerializeField] protected float currentCooldown;
-    [SerializeField] protected Health health;
+    [SerializeField] protected Health playerHealth;
+    [SerializeField] protected Health Health;
     [SerializeField] protected bool canAttack = true;
+    [SerializeField] protected bool hasDied;
 
     protected virtual void Start()
     {
+        Health = GetComponent<Health>();
         currentCooldown = damageCooldown;
     }
 
@@ -24,24 +27,34 @@ public class Enemy : MonoBehaviour
         {
             canAttack = true;
         }
+        if (Health.isDead && !hasDied)
+        {
+            hasDied = true;
+            GiveCoin();
+        }
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            health = collision.gameObject.GetComponent<Health>();
+            playerHealth = collision.gameObject.GetComponent<Health>();
             if(canAttack)
             {
-                DealDamage(health);
+                DealDamage(playerHealth);
             }
         }
     }
 
-    protected virtual void DealDamage(Health health)
+    protected virtual void DealDamage(Health playerHealth)
     {
-        health.TakeDamage(damage);
+        playerHealth.TakeDamage(damage);
         canAttack = false;
         currentCooldown = damageCooldown;
+    }
+
+    protected virtual void GiveCoin()
+    {
+        ScoreManager.Instance.AddPoint();
     }
 }

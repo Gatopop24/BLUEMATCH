@@ -23,8 +23,8 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        gameObject.SetActive(false);
         isDead = true;
+        gameObject.SetActive(false);
     }
 
     public void ResetHealth()
