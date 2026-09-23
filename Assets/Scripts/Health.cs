@@ -17,6 +17,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
     }
@@ -24,6 +25,11 @@ public class Health : MonoBehaviour
     private void Die()
     {
         isDead = true;
+        Enemy enemy = GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.GiveCoin();
+        }
         gameObject.SetActive(false);
     }
 

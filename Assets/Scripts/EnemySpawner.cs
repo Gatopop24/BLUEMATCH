@@ -14,8 +14,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        pooler = GetComponent<ObjectPooler>();
         StartSpawning();
+    }
+
+    private void Update()
+    {
+        RemoveDeadEnemies();
     }
 
     public void StartSpawning()
@@ -55,8 +59,21 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemy = pooler.GetPooledObject();
         newEnemy.transform.position = spawnPoint.position;
         newEnemy.transform.rotation = spawnPoint.rotation;
+        //newEnemy.GetComponent<Health>().isDead = false;
+        newEnemy.GetComponent<Health>().ResetHealth();
         newEnemy.SetActive(true);
         aliveEnemies.Add(newEnemy);
+    }
+
+    private void RemoveDeadEnemies()
+    {
+        for (int i = aliveEnemies.Count - 1; i >= 0; i--)
+        {
+            if (aliveEnemies[i].GetComponent<Health>().isDead)
+            {
+                aliveEnemies.RemoveAt(i);
+            }
+        }
     }
 
 }

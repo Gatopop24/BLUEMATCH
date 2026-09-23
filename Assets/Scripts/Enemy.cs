@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Health playerHealth;
     [SerializeField] protected Health Health;
     [SerializeField] protected bool canAttack = true;
-    [SerializeField] protected bool hasDied;
 
     protected virtual void Start()
     {
@@ -27,9 +26,8 @@ public class Enemy : MonoBehaviour
         {
             canAttack = true;
         }
-        if (Health.isDead && !hasDied)
+        if (Health.isDead)
         {
-            hasDied = true;
             GiveCoin();
         }
     }
@@ -53,7 +51,7 @@ public class Enemy : MonoBehaviour
         currentCooldown = damageCooldown;
     }
 
-    protected virtual void GiveCoin()
+    public void GiveCoin()
     {
         ScoreManager.Instance.AddPoint();
     }

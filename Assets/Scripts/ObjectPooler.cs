@@ -7,8 +7,7 @@ public class ObjectPooler : MonoBehaviour
     public List<GameObject> objectsToPool;
     public int amountToPool;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Loop through list of pooled objects,deactivating them and adding them to the list 
         pooledObjects = new List<GameObject>();
