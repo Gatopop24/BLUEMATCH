@@ -14,10 +14,17 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected GameObject bulletTrail;
     [SerializeField] protected float bulletTrailSpeed = 300f;
     public bool automatic;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] protected int magazineSize = 30;
+    [SerializeField] protected int currentAmmo;
+    [SerializeField] protected int reserveAmmo = 90;
+    [SerializeField] protected float reloadTime = 1.5f;
+    protected bool isReloading = false;
+    protected Coroutine reloadRoutine;
+
     protected virtual void Start()
     {
         currentCooldown = fireCooldown;
+        currentAmmo = magazineSize;
     }
 
     public virtual void Initialize(Transform ownerCamera)
@@ -27,29 +34,84 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(automatic)
+        if (isReloading)
         {
-            if(InputController.Instance.GetButton(InputController.InputAction.Fire))
+            currentCooldown -= Time.deltaTime;
+            return;
+        }
+
+        if (InputController.Instance.GetButtonDown(InputController.InputAction.Reload))
+        {
+            TryReload();
+        }
+
+        if (automatic)
+        {
+            if (InputController.Instance.GetButton(InputController.InputAction.Fire))
             {
-                if(currentCooldown <= 0f)
+                if (currentCooldown <= 0f)
                 {
-                    Shoot();
-                    currentCooldown = fireCooldown;
+                    TryShoot();
                 }
             }
         }
         else
         {
-            if(InputController.Instance.GetButtonDown(InputController.InputAction.Fire))
+            if (InputController.Instance.GetButtonDown(InputController.InputAction.Fire))
             {
-                if(currentCooldown <= 0f)
+                if (currentCooldown <= 0f)
                 {
-                    Shoot();
-                    currentCooldown = fireCooldown;
+                    TryShoot();
                 }
             }
         }
         currentCooldown -= Time.deltaTime;
+    }
+
+    protected virtual void TryShoot()
+    {
+        if (currentAmmo <= 0)
+        {
+            TryReload();
+            return;
+        }
+
+        Shoot();
+        currentAmmo--;
+        currentCooldown = fireCooldown;
+    }
+
+    protected virtual void TryReload()
+    {
+        if (isReloading)
+        {
+            return;
+        } 
+        if (currentAmmo >= magazineSize)
+        {
+            return;
+        }
+        if (reserveAmmo <= 0)
+        {
+            return;
+        } 
+
+        reloadRoutine = StartCoroutine(Reload());
+    }
+
+    protected virtual IEnumerator Reload()
+    {
+        isReloading = true;
+
+        yield return new WaitForSeconds(reloadTime);
+
+        int ammoNeeded = magazineSize - currentAmmo;
+        int ammoToLoad = Mathf.Min(ammoNeeded, reserveAmmo);
+
+        currentAmmo += ammoToLoad;
+        reserveAmmo -= ammoToLoad;
+
+        isReloading = false;
     }
 
     protected virtual void Shoot()
@@ -90,7 +152,7 @@ public class BaseGun : MonoBehaviour
 
         float distance = Vector3.Distance(start, end);
         float duration = distance / bulletTrailSpeed;
-        float elapsed = 0f; //elapsed time
+        float elapsed = 0f;
 
         while(elapsed < duration)
         {
@@ -102,6 +164,6 @@ public class BaseGun : MonoBehaviour
 
         line.SetPosition(1, end);
         yield return new WaitForSeconds(0.05f);
-        line.gameObject.SetActive(false); //modify for object pooling
+        line.gameObject.SetActive(false);
     }
 }
