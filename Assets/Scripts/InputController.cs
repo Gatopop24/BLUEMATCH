@@ -44,5 +44,6 @@ public class InputController : MonoBehaviour
         public const int LeftHook = 8;
         public const int Fire = 9;
         public const int ChangeGun = 10;
+        public const int Reload = 11;
     }
 }
