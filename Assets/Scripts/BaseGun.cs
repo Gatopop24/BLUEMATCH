@@ -20,6 +20,22 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected float reloadTime = 1.5f;
     protected bool isReloading = false;
     protected Coroutine reloadRoutine;
+    [SerializeField] protected Vector3 kickbackPosition = new Vector3(0f, 0f, -0.1f);
+    [SerializeField] protected Vector3 kickbackRotation = new Vector3(-5f, 0f, 0f);
+    [SerializeField] protected float kickbackReturnSpeed = 6f;
+
+    protected Vector3 originalWeaponPos;
+    protected Quaternion originalWeaponRot;
+    protected Vector3 targetKickPos;
+    protected Quaternion targetKickRot;
+
+    protected virtual void Awake()
+    {
+        originalWeaponPos = transform.localPosition;
+        originalWeaponRot = transform.localRotation;
+        targetKickPos = originalWeaponPos;
+        targetKickRot = originalWeaponRot;
+    }
 
     protected virtual void Start()
     {
@@ -37,6 +53,7 @@ public class BaseGun : MonoBehaviour
         if (isReloading)
         {
             currentCooldown -= Time.deltaTime;
+            ApplyWeaponRecoilVisual();
             return;
         }
 
@@ -66,6 +83,8 @@ public class BaseGun : MonoBehaviour
             }
         }
         currentCooldown -= Time.deltaTime;
+
+        ApplyWeaponRecoilVisual();
     }
 
     protected virtual void TryShoot()
@@ -116,6 +135,8 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void Shoot()
     {
+        TriggerKickback();
+
         Ray gunRay = new Ray(playerCamera.position, playerCamera.forward);
         Vector3 hitPoint;
 
@@ -133,6 +154,21 @@ public class BaseGun : MonoBehaviour
             hitPoint = gunRay.origin + gunRay.direction * bulletRange;
         }
         SpawnBulletTrail(hitPoint);
+    }
+
+    protected virtual void TriggerKickback()
+    {
+        targetKickPos = originalWeaponPos + kickbackPosition;
+        targetKickRot = originalWeaponRot * Quaternion.Euler(kickbackRotation);
+    }
+
+    protected virtual void ApplyWeaponRecoilVisual()
+    {
+        targetKickPos = Vector3.Lerp(targetKickPos, originalWeaponPos, kickbackReturnSpeed * Time.deltaTime);
+        targetKickRot = Quaternion.Lerp(targetKickRot, originalWeaponRot, kickbackReturnSpeed * Time.deltaTime);
+
+        transform.localPosition = targetKickPos;
+        transform.localRotation = targetKickRot;
     }
 
     protected virtual void SpawnBulletTrail(Vector3 hitPoint)
