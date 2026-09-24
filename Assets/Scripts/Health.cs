@@ -8,6 +8,10 @@ public class Health : MonoBehaviour
     [SerializeField] public int currentHealth;
     public DamageNumber damagePopup;
     public bool isDead = false;
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+    }
 
     private void Awake()
     {

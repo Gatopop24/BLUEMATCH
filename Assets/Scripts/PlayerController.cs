@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        playerHealthText.text = "Health : " + playerHealth.currentHealth;
+        playerHealthText.text = "" + playerHealth.currentHealth;
         IsOnFloor();
         if(InputController.Instance.GetButtonDown(InputController.InputAction.Jump) && onFloor)
         {

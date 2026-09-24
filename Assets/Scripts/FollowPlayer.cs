@@ -9,12 +9,26 @@ public class FollowPlayer : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = FindObjectOfType<PlayerController>().transform;
+        FindPlayer();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if(player == null)
+        {
+            FindPlayer();
+            return;
+        }
         agent.SetDestination(player.position);
+    }
+
+    private void FindPlayer()
+    {
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            player = playerController.transform;
+        }
     }
 }
