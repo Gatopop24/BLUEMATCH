@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using UnityEngine;
 
 
@@ -5,6 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] public int currentHealth;
+    public DamageNumber damagePopup;
     public bool isDead = false;
 
     private void Awake()
@@ -15,6 +17,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        damagePopup.Spawn(transform.position + Vector3.up, damage);
         if(currentHealth <= 0)
         {
             currentHealth = 0;

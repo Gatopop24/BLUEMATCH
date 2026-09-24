@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  damagePopup: {fileID: 730574017209504568, guid: 8dd9618199ec2a64c8b306ff5a34ea23, type: 3}
   isDead: 0
 --- !u!114 &5761185914583088931
 MonoBehaviour:
@@ -144,7 +145,8 @@ MonoBehaviour:
   damage: 10
   damageCooldown: 2
   currentCooldown: 0
-  health: {fileID: 0}
+  playerHealth: {fileID: 0}
+  Health: {fileID: 0}
   canAttack: 1
 --- !u!114 &2615207744998686198
 MonoBehaviour:
