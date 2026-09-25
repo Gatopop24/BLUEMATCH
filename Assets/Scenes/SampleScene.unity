@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 15700762}
   - component: {fileID: 15700764}
   - component: {fileID: 15700763}
+  - component: {fileID: 15700765}
   m_Layer: 5
   m_Name: Fill Health
   m_TagString: Untagged
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -194,6 +195,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15700761}
   m_CullTransparentMesh: 1
+--- !u!114 &15700765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15700761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c5c7e7ddddfef4695c16096f124c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 15700763}
+  playerHealth: {fileID: 1504183889}
 --- !u!1 &72700225
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +263,7 @@ MonoBehaviour:
   slots:
   - icon: {fileID: 784107258}
   - icon: {fileID: 1118597498}
+  - icon: {fileID: 659421371}
   equippedColor: {r: 1, g: 1, b: 1, a: 1}
   unequippedColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 0.46666667}
 --- !u!1 &189946776
@@ -1751,6 +1767,11 @@ MonoBehaviour:
   normalSize: 20
   expandedSize: 35
   expandSpeed: 10
+--- !u!20 &1235282652 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2950541045802864860, guid: 1d21ab8551efb6048bb7c4a4f3e3c137, type: 3}
+  m_PrefabInstance: {fileID: 720665382419663264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257165136
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,6 +2701,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3759384586788185111, guid: 1d21ab8551efb6048bb7c4a4f3e3c137, type: 3}
+      propertyPath: 'weaponPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 331027759901367695, guid: 26d92d791c6412143a8d5d57afaa10dd, type: 3}
+    - target: {fileID: 4046745792512025348, guid: 1d21ab8551efb6048bb7c4a4f3e3c137, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1235282652}
     - target: {fileID: 4629234331462257425, guid: 1d21ab8551efb6048bb7c4a4f3e3c137, type: 3}
       propertyPath: m_Name
       value: Player

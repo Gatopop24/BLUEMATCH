@@ -184,6 +184,15 @@ MonoBehaviour:
   currentAmmo: 0
   reserveAmmo: 90
   reloadTime: 1.5
+  kickbackPosition: {x: 0, y: 0, z: -0.1}
+  kickbackRotation: {x: -5, y: 0, z: 0}
+  kickbackReturnSpeed: 6
+  audioSource: {fileID: 0}
+  shootSound: {fileID: 0}
+  aimPositionOffset: {x: 0, y: -0.05, z: 0.1}
+  aimSpeed: 10
+  aimFOV: 40
+  aimSensitivityMultiplier: 0.5
 --- !u!1001 &75287279344255891
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,11 +21,11 @@ public class GunManager : MonoBehaviour
     private void Update()
     {
         float scroll = InputController.Instance.GetAxis(InputController.InputAction.ChangeGun);
-        if(scroll > 0f)
+        if(scroll < 0f)
         {
             CycleGun(1);
         }
-        else if(scroll < 0f)
+        else if(scroll > 0f)
         {
             CycleGun(-1);
         }

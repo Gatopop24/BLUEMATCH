@@ -11,6 +11,7 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected float bulletRange;
     [SerializeField] protected Transform muzzle;
     protected Transform playerCamera;
+    protected CameraController cameraController;
     [SerializeField] protected GameObject bulletTrail;
     [SerializeField] protected float bulletTrailSpeed = 300f;
     public bool automatic;
@@ -23,6 +24,15 @@ public class BaseGun : MonoBehaviour
     [SerializeField] protected Vector3 kickbackPosition = new Vector3(0f, 0f, -0.1f);
     [SerializeField] protected Vector3 kickbackRotation = new Vector3(-5f, 0f, 0f);
     [SerializeField] protected float kickbackReturnSpeed = 6f;
+    [SerializeField] protected AudioSource audioSource;
+    [SerializeField] protected AudioClip shootSound;
+
+    [SerializeField] protected Vector3 aimPositionOffset = new Vector3(0f, -0.05f, 0.1f);
+    [SerializeField] protected float aimSpeed = 10f;
+    [SerializeField] protected float aimFOV = 40f;
+    [SerializeField] protected float aimSensitivityMultiplier = 0.5f;
+    protected bool isAiming = false;
+    protected Vector3 aimTargetPos;
 
     protected Vector3 originalWeaponPos;
     protected Quaternion originalWeaponRot;
@@ -35,6 +45,7 @@ public class BaseGun : MonoBehaviour
         originalWeaponRot = transform.localRotation;
         targetKickPos = originalWeaponPos;
         targetKickRot = originalWeaponRot;
+        aimTargetPos = originalWeaponPos;
     }
 
     protected virtual void Start()
@@ -46,6 +57,7 @@ public class BaseGun : MonoBehaviour
     public virtual void Initialize(Transform ownerCamera)
     {
         playerCamera = ownerCamera;
+        cameraController = ownerCamera.GetComponent<CameraController>();
     }
 
     protected virtual void Update()
@@ -61,7 +73,7 @@ public class BaseGun : MonoBehaviour
         {
             TryReload();
         }
-
+        HandleAimInput();
         if (automatic)
         {
             if (InputController.Instance.GetButton(InputController.InputAction.Fire))
@@ -136,7 +148,7 @@ public class BaseGun : MonoBehaviour
     protected virtual void Shoot()
     {
         TriggerKickback();
-
+        PlayShootSound();
         Ray gunRay = new Ray(playerCamera.position, playerCamera.forward);
         Vector3 hitPoint;
 
@@ -158,16 +170,16 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void TriggerKickback()
     {
-        targetKickPos = originalWeaponPos + kickbackPosition;
+        targetKickPos = aimTargetPos + kickbackPosition;
         targetKickRot = originalWeaponRot * Quaternion.Euler(kickbackRotation);
     }
 
     protected virtual void ApplyWeaponRecoilVisual()
     {
-        targetKickPos = Vector3.Lerp(targetKickPos, originalWeaponPos, kickbackReturnSpeed * Time.deltaTime);
+        targetKickPos = Vector3.Lerp(targetKickPos, aimTargetPos, kickbackReturnSpeed * Time.deltaTime);
         targetKickRot = Quaternion.Lerp(targetKickRot, originalWeaponRot, kickbackReturnSpeed * Time.deltaTime);
 
-        transform.localPosition = targetKickPos;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetKickPos, aimSpeed * Time.deltaTime);
         transform.localRotation = targetKickRot;
     }
 
@@ -201,5 +213,37 @@ public class BaseGun : MonoBehaviour
         line.SetPosition(1, end);
         yield return new WaitForSeconds(0.05f);
         line.gameObject.SetActive(false);
+    }
+
+    protected virtual void PlayShootSound()
+    {
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = shootSound;
+            audioSource.Play();
+        }
+    }
+
+    protected virtual void HandleAimInput()
+    {
+        bool aimButtonHeld = InputController.Instance.GetButton(InputController.InputAction.Aim);
+
+        if (aimButtonHeld != isAiming)
+        {
+            isAiming = aimButtonHeld;
+            if (isAiming)
+            {
+                aimTargetPos = originalWeaponPos + aimPositionOffset;
+            }
+            else
+            {
+                aimTargetPos = originalWeaponPos;
+            }
+            if (cameraController != null)
+            {
+                cameraController.SetAiming(isAiming, aimFOV, aimSensitivityMultiplier);
+            }
+        }
     }
 }

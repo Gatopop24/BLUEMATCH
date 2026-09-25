@@ -698,6 +698,9 @@ MonoBehaviour:
   speed: 100
   RotationX: 0
   playerTransform: {fileID: 890534339825639137}
+  playerCamera: {fileID: 0}
+  normalFOV: 60
+  fovSpeed: 8
 --- !u!1 &4629234331462257425
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +885,7 @@ MonoBehaviour:
   weaponPrefabs:
   - {fileID: 6555257592176000732, guid: a0e9593ace02cc04e94d8644f33dacff, type: 3}
   - {fileID: 6555257592176000732, guid: 852810236b0790a478bad9972bd8a014, type: 3}
+  - {fileID: 331027759901367695, guid: 26d92d791c6412143a8d5d57afaa10dd, type: 3}
 --- !u!114 &4639854740404680261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  damagePopup: {fileID: 0}
   isDead: 0
 --- !u!1 &6952015207788299585
 GameObject:
