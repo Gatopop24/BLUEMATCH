@@ -7,6 +7,8 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private float maxDistance = 1000f; //erase if not used
     [SerializeField] private int inputAction;
     [SerializeField] private bool isHooked;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip ShootSound;
     private SpringJoint joint;
     public LayerMask canBeHooked;
     public Transform tip;
@@ -64,6 +66,7 @@ public class GrapplingHook : MonoBehaviour
             lineRenderer.positionCount = 2;
             isHooked = true;
             player.GetComponent<PlayerController>().isSwinging = true;
+            PlayAudio.PlayClip(audioSource, ShootSound);
         }
     }
 

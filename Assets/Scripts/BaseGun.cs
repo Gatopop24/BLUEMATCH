@@ -17,7 +17,15 @@ public class BaseGun : MonoBehaviour
     public bool automatic;
     [SerializeField] protected int magazineSize = 30;
     [SerializeField] protected int currentAmmo;
+    public int CurrentAmmo
+    {
+        get { return currentAmmo; }
+    }
     [SerializeField] protected int reserveAmmo = 90;
+    public int ReserveAmmo
+    {
+        get { return reserveAmmo; }
+    }
     [SerializeField] protected float reloadTime = 1.5f;
     protected bool isReloading = false;
     protected Coroutine reloadRoutine;
@@ -217,12 +225,7 @@ public class BaseGun : MonoBehaviour
 
     protected virtual void PlayShootSound()
     {
-        if (audioSource != null && shootSound != null)
-        {
-            audioSource.Stop();
-            audioSource.clip = shootSound;
-            audioSource.Play();
-        }
+        PlayAudio.PlayClip(audioSource, shootSound);
     }
 
     protected virtual void HandleAimInput()

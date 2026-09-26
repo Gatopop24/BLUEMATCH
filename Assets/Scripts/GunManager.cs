@@ -6,6 +6,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Transform gunPosition;
     [SerializeField] private Transform playerCamera;
     [SerializeField] private List<GameObject> weaponPrefabs;
+    [SerializeField] private AmmoUI ammoDisplay;
     private GunSelectorUI weaponSelectorUI;
     private List<BaseGun> equippedWeapons = new List<BaseGun>();
     private int currentGunIndex = 0;
@@ -13,6 +14,7 @@ public class GunManager : MonoBehaviour
     private void Start()
     {
         weaponSelectorUI = FindFirstObjectByType<GunSelectorUI>();
+        ammoDisplay = FindFirstObjectByType<AmmoUI>();
         SpawnAllGuns();
         SelectGun(currentGunIndex);
     }
@@ -70,5 +72,6 @@ public class GunManager : MonoBehaviour
         {
             weaponSelectorUI.SetEquippedWeapon(index);
         }
+        ammoDisplay.SetGun(equippedWeapons[index]);
     }
 }
