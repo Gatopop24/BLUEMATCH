@@ -302,7 +302,7 @@ MonoBehaviour:
   kickbackRotation: {x: -5, y: 0, z: 0}
   kickbackReturnSpeed: 6
   audioSource: {fileID: 7424544250277547874}
-  shootSound: {fileID: 8300000, guid: 5d091859e8ed9224fa2b39a447d07201, type: 3}
+  shootSound: {fileID: 8300000, guid: af1be2f034858ab42a041b880de83818, type: 3}
   aimPositionOffset: {x: 0, y: -0.05, z: 0.1}
   aimSpeed: 10
   aimFOV: 40

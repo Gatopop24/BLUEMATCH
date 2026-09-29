@@ -618,6 +618,7 @@ MonoBehaviour:
   - {fileID: 6555257592176000732, guid: a0e9593ace02cc04e94d8644f33dacff, type: 3}
   - {fileID: 6555257592176000732, guid: 852810236b0790a478bad9972bd8a014, type: 3}
   - {fileID: 331027759901367695, guid: 26d92d791c6412143a8d5d57afaa10dd, type: 3}
+  ammoDisplay: {fileID: 0}
 --- !u!114 &3830217768712280309
 MonoBehaviour:
   m_ObjectHideFlags: 0

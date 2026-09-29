@@ -8,6 +8,8 @@ public class PlayerSpawn : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     [SerializeField] private float respawnDelay = 3f;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private Transform playerCamera;
+    [SerializeField] private DeathCamera deathCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -24,7 +26,7 @@ public class PlayerSpawn : MonoBehaviour
             }
 
             playerController.enabled = false; 
-
+            deathCamera.Play(playerCamera.position, playerCamera.rotation);
             yield return new WaitForSeconds(respawnDelay);
 
             Respawn();
@@ -37,5 +39,6 @@ public class PlayerSpawn : MonoBehaviour
         playerHealth.ResetHealth();
         player.SetActive(true);
         playerController.enabled = true;
+        deathCamera.Stop();
     }
 }
