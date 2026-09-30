@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 666277349661719543}
   - component: {fileID: 7564502000615911496}
   - component: {fileID: 5224793532640104173}
+  - component: {fileID: 6426816125157472463}
+  - component: {fileID: 2532020424695880175}
+  - component: {fileID: 5979475922773468276}
+  - component: {fileID: 3895103369190595075}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -64,26 +68,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18412bf1ec66f0a44bd2142ab460ef62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooler: {fileID: 7564502000615911496}
   damage: 10
   fireCooldown: 0.7
   currentCooldown: 0
   bulletRange: 100
-  muzzle: {fileID: 6519609403760083960}
-  bulletTrail: {fileID: 5599976046426675287, guid: b375b11f188b63c40b0d35c45dfbef4a, type: 3}
-  bulletTrailSpeed: 300
   automatic: 0
+  pelletCount: 8
+  spreadAngle: 5
+--- !u!114 &6426816125157472463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331027759901367695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478bb369258a1874da07e1966a0e1c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimPositionOffset: {x: 0, y: -0.05, z: 0.1}
+  aimSpeed: 10
+  aimFOV: 40
+  aimSensitivityMultiplier: 0.5
+--- !u!114 &2532020424695880175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331027759901367695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be9afa0a597cb04cbfe6722872f3f70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   magazineSize: 10
   currentAmmo: 0
   reserveAmmo: 60
-  reloadTime: 2
+  reloadTime: 1.5
+--- !u!114 &5979475922773468276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331027759901367695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881ed42b0f9c184469077c85ad7a56d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooler: {fileID: 7564502000615911496}
+  muzzle: {fileID: 6519609403760083960}
+  bulletTrail: {fileID: 5599976046426675287, guid: b375b11f188b63c40b0d35c45dfbef4a, type: 3}
+  bulletTrailSpeed: 300
+  audioSource: {fileID: 8146233980151380143}
+  shootSound: {fileID: 8300000, guid: 1c0e2000c7a800f458f2b7c15b08dcf9, type: 3}
+--- !u!114 &3895103369190595075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331027759901367695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcacee1b619f2549a14d69a40a8691c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   kickbackPosition: {x: 0, y: 0, z: -0.1}
   kickbackRotation: {x: -5, y: 0, z: 0}
   kickbackReturnSpeed: 6
-  audioSource: {fileID: 8146233980151380143}
-  shootSound: {fileID: 8300000, guid: 1c0e2000c7a800f458f2b7c15b08dcf9, type: 3}
-  pelletCount: 8
-  spreadAngle: 5
 --- !u!1 &1553751503566657800
 GameObject:
   m_ObjectHideFlags: 0
