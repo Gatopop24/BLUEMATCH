@@ -7,6 +7,7 @@ public class MenuUIHandler : MonoBehaviour
 {
     [SerializeField]private GameObject panelMenu;
     [SerializeField]private GameObject panelSkins;
+    
     private void Start()
     {
         ShowMenu();
@@ -40,4 +41,5 @@ public class MenuUIHandler : MonoBehaviour
         panelSkins.SetActive(false);
         panelMenu.SetActive(true);
     }
+
 }

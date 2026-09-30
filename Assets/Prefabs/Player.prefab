@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 7854657834950573747}
   - component: {fileID: 8277141801770175755}
   - component: {fileID: 3830217768712280309}
+  - component: {fileID: -6777408101231916249}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -635,6 +636,19 @@ MonoBehaviour:
   currentHealth: 0
   damagePopup: {fileID: 730574017209504568, guid: 8dd9618199ec2a64c8b306ff5a34ea23, type: 3}
   isDead: 0
+--- !u!114 &-6777408101231916249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115971435574468715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbea655d578eb546b7659aa5d04e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRenderer: {fileID: 1108006196089203217}
 --- !u!1 &6867226279490600429
 GameObject:
   m_ObjectHideFlags: 0

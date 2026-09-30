@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 241725204}
   - component: {fileID: 241725203}
   - component: {fileID: 241725202}
+  - component: {fileID: 241725205}
   m_Layer: 5
   m_Name: MagicOrange
   m_TagString: Untagged
@@ -200,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 241725203}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 241725205}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &241725203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +252,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241725200}
   m_CullTransparentMesh: 1
+--- !u!114 &241725205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241725200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 2
 --- !u!1 &276207875
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +276,7 @@ GameObject:
   - component: {fileID: 276207878}
   - component: {fileID: 276207877}
   - component: {fileID: 276207876}
+  - component: {fileID: 276207879}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -296,7 +323,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -331,6 +358,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &276207879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276207875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &678552725
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +1004,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &844213667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844213669}
+  - component: {fileID: 844213668}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &844213668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844213667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658162cf8e98d01439f00309f05db6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins:
+  - {fileID: 2100000, guid: 842136f4129c2c54badde4451476f4fa, type: 2}
+  - {fileID: 2100000, guid: 315069c21edf7924b97176f1e6ab5b83, type: 2}
+  - {fileID: 2100000, guid: b82f6d1a3a794d8468c5ffd3ad5e2791, type: 2}
+  - {fileID: 2100000, guid: 0905f4183f0f0fd4a86b0ac5f9873796, type: 2}
+  - {fileID: 2100000, guid: 4077d0e8919743643adcdcf43a05bc8b, type: 2}
+--- !u!4 &844213669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844213667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 774.19403, y: 458.3509, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &895041050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1317,7 @@ GameObject:
   - component: {fileID: 1025931099}
   - component: {fileID: 1025931098}
   - component: {fileID: 1025931097}
+  - component: {fileID: 1025931100}
   m_Layer: 5
   m_Name: MagicBlue
   m_TagString: Untagged
@@ -1265,7 +1387,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1025931098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1025931100}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1025931098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,6 +1438,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025931095}
   m_CullTransparentMesh: 1
+--- !u!114 &1025931100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025931095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 4
 --- !u!1 &1064667480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2170,7 @@ GameObject:
   - component: {fileID: 1608849044}
   - component: {fileID: 1608849043}
   - component: {fileID: 1608849042}
+  - component: {fileID: 1608849045}
   m_Layer: 5
   m_Name: MagicDark
   m_TagString: Untagged
@@ -2092,7 +2240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1608849043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1608849045}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1608849043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2131,6 +2291,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608849040}
   m_CullTransparentMesh: 1
+--- !u!114 &1608849045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608849040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 5
 --- !u!1 &1671495782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2588,7 @@ GameObject:
   - component: {fileID: 2010965374}
   - component: {fileID: 2010965373}
   - component: {fileID: 2010965372}
+  - component: {fileID: 2010965375}
   m_Layer: 5
   m_Name: LavaSkin
   m_TagString: Untagged
@@ -2484,7 +2658,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2010965373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2010965375}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2010965373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,6 +2709,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010965370}
   m_CullTransparentMesh: 1
+--- !u!114 &2010965375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010965370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 0
 --- !u!1 &2043591131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,6 +2734,7 @@ GameObject:
   - component: {fileID: 2043591135}
   - component: {fileID: 2043591134}
   - component: {fileID: 2043591133}
+  - component: {fileID: 2043591136}
   m_Layer: 5
   m_Name: MagicGreen
   m_TagString: Untagged
@@ -2604,7 +2804,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2043591134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2043591136}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2043591134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2643,6 +2855,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043591131}
   m_CullTransparentMesh: 1
+--- !u!114 &2043591136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043591131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 1
 --- !u!1 &2102057733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,6 +2880,7 @@ GameObject:
   - component: {fileID: 2102057737}
   - component: {fileID: 2102057736}
   - component: {fileID: 2102057735}
+  - component: {fileID: 2102057738}
   m_Layer: 5
   m_Name: MagicPurple
   m_TagString: Untagged
@@ -2724,7 +2950,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2102057736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102057738}
+        m_TargetAssemblyTypeName: SkinButton, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2102057736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2763,6 +3001,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102057733}
   m_CullTransparentMesh: 1
+--- !u!114 &2102057738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102057733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2413830a0bcb50a43b9c6342260a1ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinIndex: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2771,3 +3022,4 @@ SceneRoots:
   - {fileID: 678552727}
   - {fileID: 920545206}
   - {fileID: 834481782}
+  - {fileID: 844213669}
