@@ -5,8 +5,7 @@ public class GunEffects : MonoBehaviour
 {
     [SerializeField] private ObjectPooler pooler;
     [SerializeField] private Transform muzzle;
-    [SerializeField] private GameObject bulletTrail;
-    [SerializeField] private float bulletTrailSpeed = 300f;
+    [SerializeField] private float bulletSpeed = 300f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
 
@@ -17,31 +16,29 @@ public class GunEffects : MonoBehaviour
 
     public void SpawnBulletTrail(Vector3 hitPoint)
     {
-        GameObject trailObj = pooler.GetPooledObject();
-        trailObj.transform.position = muzzle.position;
-        trailObj.transform.rotation = Quaternion.identity;
-        trailObj.SetActive(true);
-        LineRenderer line = trailObj.GetComponent<LineRenderer>();
-
-        StartCoroutine(AnimateTrail(line, muzzle.position, hitPoint));
+        GameObject bullet = pooler.GetPooledObject();
+        bullet.transform.position = muzzle.position;
+        Vector3 direction = hitPoint - muzzle.position;
+        bullet.transform.rotation = Quaternion.LookRotation(direction);
+        bullet.SetActive(true);
+        StartCoroutine(AnimateBullet(bullet, muzzle.position, hitPoint));
     }
 
-    private IEnumerator AnimateTrail(LineRenderer line, Vector3 start, Vector3 end)
+    private IEnumerator AnimateBullet(GameObject bullet,Vector3 start, Vector3 end)
     {
-        line.SetPosition(0, start);
-        line.SetPosition(1, start);
         float distance = Vector3.Distance(start, end);
-        float duration = distance / bulletTrailSpeed;
+        float duration = distance / bulletSpeed;
         float elapsed = 0f;
+
         while (elapsed < duration)
         {
-            Vector3 currentEnd = Vector3.Lerp(start, end, elapsed / duration);
-            line.SetPosition(1, currentEnd);
+            float t = elapsed / duration;
+            bullet.transform.position = Vector3.Lerp(start, end, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
-        line.SetPosition(1, end);
-        yield return new WaitForSeconds(0.05f);
-        line.gameObject.SetActive(false);
+
+        bullet.transform.position = end;
+        bullet.SetActive(false);
     }
 }

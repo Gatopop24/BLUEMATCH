@@ -340,8 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooler: {fileID: -1560267060470878316}
   muzzle: {fileID: 6364560017276690810}
-  bulletTrail: {fileID: 5599976046426675287, guid: b375b11f188b63c40b0d35c45dfbef4a, type: 3}
-  bulletTrailSpeed: 300
+  bulletSpeed: 300
   audioSource: {fileID: 7424544250277547874}
   shootSound: {fileID: 8300000, guid: af1be2f034858ab42a041b880de83818, type: 3}
 --- !u!114 &5760922564649683064
@@ -373,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   objectsToPool:
-  - {fileID: 5599976046426675287, guid: b375b11f188b63c40b0d35c45dfbef4a, type: 3}
+  - {fileID: 6152012165266093810, guid: ec0581e8aa214204b9f01884e77f846c, type: 3}
   amountToPool: 5
 --- !u!1001 &1168577462798530335
 PrefabInstance:
