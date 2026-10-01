@@ -27,6 +27,17 @@ public class GunAmmo : MonoBehaviour
         currentAmmo = magazineSize;
     }
 
+    private void OnDisable()
+    {
+        if (reloadRoutine != null)
+        {
+            StopCoroutine(reloadRoutine);
+            reloadRoutine = null;
+        }
+
+        isReloading = false;
+    }
+
     public void UseAmmo()
     {
         currentAmmo--;
