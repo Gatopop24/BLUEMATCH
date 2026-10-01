@@ -17,19 +17,34 @@ public class GunEffects : MonoBehaviour
     public void SpawnBulletTrail(Vector3 hitPoint)
     {
         GameObject bullet = pooler.GetPooledObject();
-        bullet.transform.position = muzzle.position;
-        Vector3 direction = hitPoint - muzzle.position;
+        if (bullet == null)
+        {
+            return;
+        }
+        TrailRenderer trail = bullet.GetComponent<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.emitting = false;
+            trail.Clear();
+        }
+        Vector3 startPosition = muzzle.position;
+        bullet.transform.position = startPosition;
+        Vector3 direction = hitPoint - startPosition;
         bullet.transform.rotation = Quaternion.LookRotation(direction);
         bullet.SetActive(true);
-        StartCoroutine(AnimateBullet(bullet, muzzle.position, hitPoint));
+        if (trail != null)
+        {
+            trail.Clear();
+            trail.emitting = true;
+        }
+        StartCoroutine(AnimateBullet(bullet, startPosition, hitPoint));
     }
 
-    private IEnumerator AnimateBullet(GameObject bullet,Vector3 start, Vector3 end)
+    private IEnumerator AnimateBullet(GameObject bullet, Vector3 start, Vector3 end)
     {
         float distance = Vector3.Distance(start, end);
         float duration = distance / bulletSpeed;
         float elapsed = 0f;
-
         while (elapsed < duration)
         {
             float t = elapsed / duration;
@@ -37,8 +52,16 @@ public class GunEffects : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
         bullet.transform.position = end;
+        TrailRenderer trail = bullet.GetComponent<TrailRenderer>();
+        if (trail != null)
+        {
+            trail.emitting = false;
+        }
         bullet.SetActive(false);
+        if (trail != null)
+        {
+            trail.Clear();
+        }
     }
 }
