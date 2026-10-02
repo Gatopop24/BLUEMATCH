@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,10 +10,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Health playerHealth;
     [SerializeField] protected Health Health;
     [SerializeField] protected bool canAttack = true;
+    [SerializeField] private float minSpeed = 3.5f;
+    [SerializeField] private float maxSpeed = 10f;
+    private NavMeshAgent agent;
 
     protected virtual void Start()
     {
         Health = GetComponent<Health>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Random.Range(minSpeed, maxSpeed);
         currentCooldown = damageCooldown;
     }
 
