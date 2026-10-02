@@ -47,5 +47,6 @@ public class InputController : MonoBehaviour
         public const int Reload = 11;
         public const int Aim = 12;
         public const int Pause = 13;
+        public const int Interact = 14;
     }
 }

@@ -158,4 +158,10 @@ public class BaseGun : MonoBehaviour
         Vector3 aimPosition = gunAiming.GetAimPosition(gunRecoil.OriginalWeaponPosition);
         gunRecoil.SetAimTargetPosition(aimPosition);
     }
+
+    public void RefillAmmo()
+    {
+        gunAmmo.RefillAmmo();
+    }
+
 }

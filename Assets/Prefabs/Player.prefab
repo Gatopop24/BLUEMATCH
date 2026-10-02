@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 8277141801770175755}
   - component: {fileID: 3830217768712280309}
   - component: {fileID: -6777408101231916249}
+  - component: {fileID: -7151083326984747644}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -695,6 +696,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetRenderer: {fileID: 1108006196089203217}
+--- !u!114 &-7151083326984747644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115971435574468715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce64e7c8517cd64d8ff1ca8180e0425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 286948991107558671}
+  interactionRange: 3
+  gunManager: {fileID: 8277141801770175755}
 --- !u!1 &6867226279490600429
 GameObject:
   m_ObjectHideFlags: 0

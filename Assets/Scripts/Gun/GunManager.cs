@@ -74,4 +74,9 @@ public class GunManager : MonoBehaviour
         }
         ammoDisplay.SetGun(equippedWeapons[index]);
     }
+
+    public BaseGun GetCurrentGun()
+    {
+        return equippedWeapons[currentGunIndex];
+    }
 }

@@ -5,7 +5,8 @@ public class GunAmmo : MonoBehaviour
 {
     [SerializeField] private int magazineSize = 30;
     [SerializeField] private int currentAmmo;
-    [SerializeField] private int reserveAmmo = 90;
+    [SerializeField] private int maxReserveAmmo = 90;
+    [SerializeField] private int reserveAmmo;
     [SerializeField] private float reloadTime = 1.5f;
     private bool isReloading = false;
     private Coroutine reloadRoutine;
@@ -25,6 +26,7 @@ public class GunAmmo : MonoBehaviour
     private void Start()
     {
         currentAmmo = magazineSize;
+        reserveAmmo = maxReserveAmmo;
     }
 
     private void OnDisable()
@@ -70,5 +72,19 @@ public class GunAmmo : MonoBehaviour
         currentAmmo += ammoToLoad;
         reserveAmmo -= ammoToLoad;
         isReloading = false;
+    }
+
+    public void RefillAmmo()
+    {
+        if (reloadRoutine != null)
+        {
+            StopCoroutine(reloadRoutine);
+            reloadRoutine = null;
+        }
+
+        isReloading = false;
+
+        currentAmmo = magazineSize;
+        reserveAmmo = maxReserveAmmo;
     }
 }
