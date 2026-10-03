@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private ObjectPooler pooler;
-    public GameObject[] enemyPrefabs;
+    //public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
     public float spawnInterval = 3f;
     public int maxEnemiesAlive = 10;

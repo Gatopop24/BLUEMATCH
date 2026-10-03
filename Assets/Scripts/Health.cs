@@ -33,9 +33,15 @@ public class Health : MonoBehaviour
     {
         isDead = true;
         Enemy enemy = GetComponent<Enemy>();
+        ExplosiveEnemy explosiveEnemy = GetComponent<ExplosiveEnemy>();
         if (enemy != null)
         {
             enemy.GiveCoin();
+        }
+        if(explosiveEnemy != null)
+        {
+            explosiveEnemy.Explode();
+            explosiveEnemy.GiveCoin();
         }
         gameObject.SetActive(false);
     }

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunEffects : MonoBehaviour
@@ -8,6 +10,7 @@ public class GunEffects : MonoBehaviour
     [SerializeField] private float bulletSpeed = 300f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootSound;
+    private List<GameObject> activeBullets = new List<GameObject>();
 
     public void PlayShootSound()
     {
@@ -16,6 +19,10 @@ public class GunEffects : MonoBehaviour
 
     public void SpawnBulletTrail(Vector3 hitPoint)
     {
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        } 
         GameObject bullet = pooler.GetPooledObject();
         if (bullet == null)
         {
@@ -32,6 +39,7 @@ public class GunEffects : MonoBehaviour
         Vector3 direction = hitPoint - startPosition;
         bullet.transform.rotation = Quaternion.LookRotation(direction);
         bullet.SetActive(true);
+        activeBullets.Add(bullet);
         if (trail != null)
         {
             trail.Clear();
@@ -63,5 +71,15 @@ public class GunEffects : MonoBehaviour
         {
             trail.Clear();
         }
+        activeBullets.Remove(bullet);
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject bullet in activeBullets)
+        {
+            bullet.SetActive(false);
+        }
+        activeBullets.Clear();
     }
 }

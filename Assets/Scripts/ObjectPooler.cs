@@ -21,6 +21,7 @@ public class ObjectPooler : MonoBehaviour
                 obj.transform.SetParent(this.transform); // set as children of Spawn Manager
             }
         }
+        ShuffleList();
     }
 
     public GameObject GetPooledObject()
@@ -36,5 +37,16 @@ public class ObjectPooler : MonoBehaviour
         }
         // otherwise, return null   
         return null;
+    }
+
+    public void ShuffleList()
+    {
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            GameObject copy = pooledObjects[i];
+            int randomIndex = Random.Range(i, pooledObjects.Count);
+            pooledObjects[i] = pooledObjects[randomIndex];
+            pooledObjects[randomIndex] = copy;
+        }
     }
 }
