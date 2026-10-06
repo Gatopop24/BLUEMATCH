@@ -39,4 +39,15 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Coins: " + currentScore;
         }
     }
+
+    public bool Spend(int cost)
+    {
+        if(currentScore < cost)
+        {
+            return false;
+        }
+        currentScore -= cost;
+        UpdateScore();
+        return true;
+    }
 }

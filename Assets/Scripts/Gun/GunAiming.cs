@@ -49,4 +49,15 @@ public class GunAiming : MonoBehaviour
     {
         get { return aimSpeed; }
     }
+
+    public void StopAiming()
+    {
+        if (!isAiming)
+        {
+            return;
+        }
+
+        isAiming = false;
+        cameraController.SetAiming(false, aimFOV, aimSensitivityMultiplier);
+    }
 }

@@ -22,7 +22,10 @@ public class GunAmmo : MonoBehaviour
     {
         get { return isReloading; }
     }
-
+    public bool IsFull
+    {
+        get { return currentAmmo >= magazineSize && reserveAmmo >= maxReserveAmmo; }
+    }
     private void Start()
     {
         currentAmmo = magazineSize;

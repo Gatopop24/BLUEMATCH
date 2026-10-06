@@ -27,6 +27,10 @@ public class BaseGun : MonoBehaviour
     {
         get { return gunAmmo.ReserveAmmo; }
     }
+    public bool IsAmmoFull
+    {
+        get { return gunAmmo.IsFull; }
+    }
 
     protected virtual void Awake()
     {
@@ -63,6 +67,12 @@ public class BaseGun : MonoBehaviour
         if (InputController.Instance.GetButtonDown(InputController.InputAction.Reload))
         {
             TryReload();
+            if (gunAmmo.IsReloading)
+            {
+                currentCooldown -= Time.deltaTime;
+                ApplyWeaponRecoilVisual();
+                return;
+            }
         }
         HandleAimInput();
 
@@ -107,6 +117,12 @@ public class BaseGun : MonoBehaviour
     protected virtual void TryReload()
     {
         gunAmmo.TryReload();
+        if (gunAmmo.IsReloading)
+        {
+            gunAiming.StopAiming();
+            Vector3 hipPosition = gunAiming.GetAimPosition(gunRecoil.OriginalWeaponPosition);
+            gunRecoil.SetAimTargetPosition(hipPosition);
+        }
     }
 
     protected virtual void Shoot()
